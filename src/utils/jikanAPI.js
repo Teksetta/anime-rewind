@@ -1,4 +1,4 @@
-const CORS_PROXY = 'https://cors.allorigins.win/raw/'
+const CORS_PROXY = 'https://api.allorigins.win/raw?url='
 const JIKAN_API = 'https://api.jikan.moe/v4'
 
 export async function getAnimeRecommendations() {
