@@ -1,0 +1,138 @@
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  background: #0a0a0a;
+  color: #00ff88;
+  overflow: hidden;
+  position: relative;
+  font-family: 'Courier New', monospace;
+}
+
+/* Splash Screen */
+.splash-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.fbi-warning {
+  text-align: center;
+  animation: fade-in 0.5s ease-in;
+}
+
+.fbi-content {
+  border: 3px solid #00ff88;
+  padding: 40px;
+  background: #1a1a1a;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+.fbi-text {
+  font-size: 3em;
+  font-weight: bold;
+  color: #ff006e;
+  text-shadow: 2px 2px 0 #00ff88;
+  margin-bottom: 20px;
+}
+
+.fbi-subtext {
+  font-size: 1.5em;
+  color: #00d9ff;
+}
+
+.play-button {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 20px 60px;
+  font-size: 1.5em;
+  background: #ff006e;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  transition: all 0.2s;
+  z-index: 101;
+  box-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
+}
+
+.play-button:hover {
+  background: #ff3d8a;
+  transform: translateX(-50%) scale(1.05);
+}
+
+.play-button:active {
+  transform: translateX(-50%) scale(0.95);
+}
+
+/* Loading Screen */
+.loading-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, #0a0a0a, #1a1a1a);
+}
+
+.loading-spinner {
+  text-align: center;
+  color: #00ff88;
+  font-size: 1.5em;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #00ff88;
+  border-top: 4px solid #ff006e;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 30px auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Error Screen */
+.error-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+  color: #ff006e;
+  gap: 30px;
+}
+
+.error-screen p {
+  font-size: 1.5em;
+}
+
+.error-screen button {
+  padding: 10px 30px;
+  background: #00ff88;
+  color: #0a0a0a;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+}

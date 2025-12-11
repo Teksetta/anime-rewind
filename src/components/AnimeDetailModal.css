@@ -1,0 +1,159 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 3px solid #00ff88;
+  border-radius: 8px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 
+    0 0 30px rgba(0, 255, 136, 0.4),
+    inset 0 0 30px rgba(0, 255, 136, 0.1);
+}
+
+.modal-close {
+  position: sticky;
+  top: 0;
+  right: 0;
+  float: right;
+  background: transparent;
+  border: none;
+  color: #ff006e;
+  font-size: 1.5em;
+  cursor: pointer;
+  padding: 15px;
+  z-index: 301;
+}
+
+.modal-close:hover {
+  color: #ff3d8a;
+}
+
+.modal-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 30px;
+  color: #00ff88;
+}
+
+.modal-image {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border: 2px solid #00d9ff;
+  border-radius: 4px;
+  background: #0a0a0a;
+}
+
+.modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00ff88;
+  font-weight: bold;
+}
+
+.modal-info h2 {
+  margin-top: 0;
+  color: #00ff88;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+  font-size: 1.8em;
+  margin-bottom: 20px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 255, 136, 0.05);
+  padding: 12px;
+  border-left: 2px solid #00ff88;
+  border-radius: 2px;
+}
+
+.info-item .label {
+  font-size: 0.85em;
+  color: #00d9ff;
+  margin-bottom: 4px;
+}
+
+.info-item .value {
+  font-weight: bold;
+  color: #00ff88;
+}
+
+.synopsis,
+.genres,
+.match-reason {
+  margin-bottom: 20px;
+}
+
+.synopsis h4,
+.genres h4,
+.match-reason h4 {
+  color: #00d9ff;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  letter-spacing: 1px;
+}
+
+.synopsis p,
+.match-reason p {
+  color: #aaffaa;
+  line-height: 1.6;
+  font-size: 0.95em;
+}
+
+.genre-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.genre-tag {
+  background: transparent;
+  border: 1px solid #00ff88;
+  color: #00ff88;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85em;
+}
+
+@media (max-width: 600px) {
+  .modal-body {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+}

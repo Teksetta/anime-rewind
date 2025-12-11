@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #0a0a0a;
+  color: #00ff88;
+  font-family: 'Courier New', monospace;
+}
+
+/* CRT Scanlines Effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  z-index: 9999;
+}
+
+/* VHS Noise */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: 
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence baseFrequency="0.9" numOctaves="4" seed="2"/><feColorMatrix type="saturate" values="0.3"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.05"/></svg>');
+  animation: noise 0.2s infinite;
+  z-index: 9998;
+}
+
+@keyframes noise {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-2px, -2px); }
+  20% { transform: translate(-2px, 2px); }
+  30% { transform: translate(2px, -2px); }
+  40% { transform: translate(2px, 2px); }
+  50% { transform: translate(-1px, -1px); }
+  60% { transform: translate(-1px, 1px); }
+  70% { transform: translate(1px, -1px); }
+  80% { transform: translate(1px, 1px); }
+  90% { transform: translate(0, 0); }
+}
+
+button {
+  font-family: 'Courier New', monospace;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+input, select, textarea {
+  font-family: 'Courier New', monospace;
+  background: #1a1a1a;
+  color: #00ff88;
+  border: 2px solid #00ff88;
+  padding: 8px;
+}
+
+input::placeholder {
+  color: #00ff88;
+  opacity: 0.5;
+}
+
+/* Question Options Styles */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.option-btn,
+.genre-btn {
+  padding: 20px;
+  background: transparent;
+  border: 2px solid #00ff88;
+  color: #00ff88;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  text-align: center;
+}
+
+.option-btn:hover,
+.genre-btn:hover {
+  background: rgba(0, 255, 136, 0.1);
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.option-btn.active,
+.genre-btn.active {
+  background: #00ff88;
+  color: #0a0a0a;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+}
+
+.option-label {
+  display: block;
+  font-size: 1.1em;
+  margin-bottom: 8px;
+}
+
+.option-desc {
+  display: block;
+  font-size: 0.85em;
+  opacity: 0.8;
+  font-weight: normal;
+}

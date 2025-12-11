@@ -1,0 +1,126 @@
+.questionnaire-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.questionnaire-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: -1;
+}
+
+.questionnaire-card {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 3px solid #00ff88;
+  border-radius: 8px;
+  padding: 40px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 
+    0 0 20px rgba(0, 255, 136, 0.3),
+    inset 0 0 20px rgba(0, 255, 136, 0.1);
+  animation: slide-up 0.3s ease-out;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: #0a0a0a;
+  border-radius: 2px;
+  margin-bottom: 30px;
+  overflow: hidden;
+  border: 1px solid #00ff88;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ff88, #00d9ff);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+.question-header {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.question-header h2 {
+  font-size: 1.8em;
+  color: #00ff88;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+  margin: 0;
+}
+
+.step-counter {
+  color: #00d9ff;
+  font-size: 0.9em;
+  margin: 0;
+}
+
+.question-content {
+  margin-bottom: 40px;
+}
+
+.button-group {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 12px 30px;
+  font-size: 1em;
+  border: 2px solid #00ff88;
+  background: transparent;
+  color: #00ff88;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+}
+
+.btn-primary:hover {
+  background: #00ff88;
+  color: #0a0a0a;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+.btn-secondary {
+  opacity: 0.7;
+}
+
+.btn-secondary:hover {
+  opacity: 1;
+  background: rgba(0, 255, 136, 0.1);
+}
+
+.btn-primary:active,
+.btn-secondary:active {
+  transform: scale(0.95);
+}
