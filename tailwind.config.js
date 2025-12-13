@@ -2,39 +2,33 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,jsx}",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       colors: {
         'vhs-black': '#0a0a0a',
-        'vhs-dark': '#1a1a1a',
-        'vhs-neon': '#00ff88',
-        'vhs-neon-pink': '#ff006e',
-        'vhs-cyan': '#00d9ff',
-        'vhs-magenta': '#ff00ff',
-        'vhs-yellow': '#ffff00',
+        'vhs-white': '#e0e0e0',
+        'vhs-red': '#ff2a6d',
+        'vhs-cyan': '#05d9e8',
+        'vhs-yellow': '#f7ef8a',
+        'vhs-purple': '#d62ad0',
+        'vhs-green': '#01ffaa',
+        'vhs-blue': '#1e3799',
       },
       fontFamily: {
-        'vhs': ['\'OCR A\'', 'monospace'],
-        'retro': ['\'Courier New\'', 'monospace'],
+        'vhs': ['VT323', 'monospace'],
+        'retro': ['Press Start 2P', 'cursive'],
+        'orbitron': ['Orbitron', 'sans-serif'],
       },
       animation: {
+        'scanline': 'scanline-move 8s linear infinite',
         'flicker': 'flicker 0.15s infinite',
-        'glitch': 'glitch 0.3s infinite',
-      },
-      keyframes: {
-        flicker: {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0.7' },
-        },
-        glitch: {
-          '0%, 100%': { transform: 'translate(0)' },
-          '20%': { transform: 'translate(-2px, 2px)' },
-          '40%': { transform: 'translate(-2px, -2px)' },
-          '60%': { transform: 'translate(2px, 2px)' },
-          '80%': { transform: 'translate(2px, -2px)' },
-        },
+        'noise': 'noise 0.2s steps(10) infinite',
+        'glitch': 'glitch-anim 5s infinite',
+        'title-pulse': 'title-pulse 2s ease-in-out infinite',
+        'blink': 'blink 1s step-start infinite',
+        'loading-sweep': 'loading-sweep 1.5s ease-in-out infinite',
       },
     },
   },

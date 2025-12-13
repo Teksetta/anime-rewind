@@ -1,0 +1,384 @@
+/* VHS Aesthetic Effects Stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
+
+:root {
+  /* VHS Color Palette */
+  --vhs-black: #0a0a0a;
+  --vhs-white: #e0e0e0;
+  --vhs-red: #ff2a6d;
+  --vhs-cyan: #05d9e8;
+  --vhs-yellow: #f7ef8a;
+  --vhs-purple: #d62ad0;
+  --vhs-green: #01ffaa;
+  --vhs-blue: #1e3799;
+  
+  /* CRT Effects */
+  --scanline-opacity: 0.15;
+  --noise-opacity: 0.08;
+  --vignette-size: 1.5;
+  
+  /* Chromatic Aberration */
+  --aberration-offset: 2px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: var(--vhs-black);
+  font-family: 'VT323', monospace;
+  color: var(--vhs-white);
+}
+
+/* CRT Screen Container */
+.crt-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--vhs-black);
+  overflow: hidden;
+}
+
+/* CRT Border/Bezel Effect */
+.crt-screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 20px solid #1a1a1a;
+  border-radius: 8px;
+  box-shadow: 
+    inset 0 0 50px rgba(0, 0, 0, 0.8),
+    0 0 50px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Scanlines Effect */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 1px,
+    rgba(0, 0, 0, var(--scanline-opacity)) 1px,
+    rgba(0, 0, 0, var(--scanline-opacity)) 2px
+  );
+  animation: scanline-move 8s linear infinite;
+}
+
+@keyframes scanline-move {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(10px); }
+}
+
+/* CRT Flicker */
+.crt-flicker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 998;
+  background: rgba(255, 255, 255, 0);
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.97; }
+  50% { opacity: 1; }
+  100% { opacity: 0.95; }
+}
+
+/* Static Noise Overlay */
+.noise-overlay {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 997;
+  opacity: var(--noise-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  animation: noise 0.2s steps(10) infinite;
+}
+
+@keyframes noise {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 15%); }
+  50% { transform: translate(-10%, 5%); }
+  60% { transform: translate(15%, 0); }
+  70% { transform: translate(0, 10%); }
+  80% { transform: translate(-15%, 0); }
+  90% { transform: translate(10%, 5%); }
+}
+
+/* Vignette Effect */
+.vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 996;
+  box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.9);
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+}
+
+/* Chromatic Aberration Effect */
+.chromatic-text {
+  position: relative;
+  text-shadow: 
+    var(--aberration-offset) 0 0 var(--vhs-red),
+    calc(var(--aberration-offset) * -1) 0 0 var(--vhs-cyan);
+  color: var(--vhs-white);
+}
+
+.chromatic-text-strong {
+  position: relative;
+  text-shadow: 
+    3px 0 0 var(--vhs-red),
+    -3px 0 0 var(--vhs-cyan),
+    0 2px 0 var(--vhs-green);
+  color: var(--vhs-white);
+}
+
+/* VCR On-Screen Display Style */
+.vcr-osd {
+  font-family: 'VT323', monospace;
+  font-size: 24px;
+  color: var(--vhs-cyan);
+  text-shadow: 
+    0 0 10px var(--vhs-cyan),
+    2px 0 0 var(--vhs-red),
+    -2px 0 0 var(--vhs-blue);
+  letter-spacing: 2px;
+}
+
+/* VHS Tape Label Style */
+.tape-label {
+  background: linear-gradient(135deg, #f4f4f4 0%, #e0e0e0 100%);
+  border: 2px solid #333;
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2),
+    2px 2px 8px rgba(0, 0, 0, 0.3);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  color: #333;
+  padding: 8px 12px;
+  text-transform: uppercase;
+}
+
+/* VHS Tracking Lines */
+.tracking-lines {
+  position: relative;
+}
+
+.tracking-lines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    var(--vhs-white) 50%,
+    transparent 100%
+  );
+  animation: tracking-drift 3s ease-in-out infinite;
+  opacity: 0.3;
+}
+
+@keyframes tracking-drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+/* VCR Button Styles */
+.vcr-button {
+  position: relative;
+  background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+  border: 2px solid #444;
+  border-radius: 4px;
+  color: var(--vhs-cyan);
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.1s;
+  box-shadow: 
+    0 4px 0 #0a0a0a,
+    0 6px 10px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 8px var(--vhs-cyan);
+}
+
+.vcr-button:hover {
+  background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+  transform: translateY(1px);
+  box-shadow: 
+    0 3px 0 #0a0a0a,
+    0 5px 8px rgba(0, 0, 0, 0.5);
+}
+
+.vcr-button:active {
+  transform: translateY(4px);
+  box-shadow: 
+    0 0 0 #0a0a0a,
+    0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Glass-morphic VHS Panel */
+.vhs-panel {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(10px) saturate(180%);
+  border: 2px solid rgba(5, 217, 232, 0.3);
+  border-radius: 8px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 20px rgba(5, 217, 232, 0.2);
+  padding: 24px;
+}
+
+/* VHS Loading Animation */
+.vhs-loading {
+  position: relative;
+  width: 100px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--vhs-cyan);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.vhs-loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--vhs-cyan) 50%,
+    transparent 100%
+  );
+  animation: loading-sweep 1.5s ease-in-out infinite;
+}
+
+@keyframes loading-sweep {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Glitch Effect */
+.glitch {
+  position: relative;
+  animation: glitch-anim 5s infinite;
+}
+
+@keyframes glitch-anim {
+  0%, 90%, 100% {
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+  91% {
+    transform: translate(-2px, 2px);
+    filter: hue-rotate(90deg);
+  }
+  92% {
+    transform: translate(2px, -2px);
+    filter: hue-rotate(-90deg);
+  }
+  93% {
+    transform: translate(-2px, 2px);
+    filter: hue-rotate(90deg);
+  }
+  94% {
+    transform: translate(2px, -2px);
+    filter: hue-rotate(-90deg);
+  }
+}
+
+/* VHS Color Bleed */
+.color-bleed {
+  filter: 
+    saturate(150%)
+    contrast(110%)
+    hue-rotate(-5deg);
+}
+
+/* Retro Title Style */
+.retro-title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 64px;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, 
+    var(--vhs-cyan) 0%, 
+    var(--vhs-purple) 50%,
+    var(--vhs-red) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 
+    3px 3px 0 rgba(255, 42, 109, 0.5),
+    -3px -3px 0 rgba(5, 217, 232, 0.5);
+  animation: title-pulse 2s ease-in-out infinite;
+}
+
+@keyframes title-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+/* Time Code Display */
+.timecode {
+  font-family: 'VT323', monospace;
+  font-size: 28px;
+  color: var(--vhs-yellow);
+  text-shadow: 0 0 10px var(--vhs-yellow);
+  letter-spacing: 3px;
+}
+
+/* VHS Warning Text */
+.warning-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  color: var(--vhs-red);
+  text-shadow: 0 0 8px var(--vhs-red);
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
